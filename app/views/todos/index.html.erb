@@ -1,0 +1,85 @@
+<style>
+
+/* * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: cursive;
+  } */
+   
+  body {
+    background: #f2f2f2;
+  }
+   
+  h1{
+     text-align: center;
+     margin: 5%;
+     font-size: 3rem;
+     
+  }
+   
+   .form-control{
+    width : 35%;
+    margin-top : 1%;
+    margin-left : 33%;
+    text-align: left;
+    padding-left: 10px;
+    padding: 10px;
+    font-size: 20px;
+    list-style: circle;
+  }
+  .form-date{
+    width : 20%;
+    margin-top : 2%;
+    margin-left : 40%;
+    text-align: left;
+    padding-left: 10px;
+    padding: 10px;
+    font-size: 20px;
+    list-style: circle;
+  }
+  .addBtn{
+    margin-top : 3%;
+    margin-left : 48%;
+    padding-left: 10px;
+    padding: 10px;
+    font-size: 20px;
+  }
+  /* .task_style{
+    margin-left : 45%;
+    font-size : 20px;
+  } */
+  .date_style{
+    margin-left : 35%;
+    font-size : 20px;
+  }
+  .btn-btn-danger{
+    color: white;
+    background-color: red;
+  }
+
+</style>
+  <h1 class = "row"> Todo List </h1>
+  <%= form_with(model: @todo,  url: "/todos", method: "POST") do |form| %>
+        <%= form.text_field :task, id: "myInput" ,placeholder: "Add a Task..." ,class: "form-control" %>
+        <%= form.date_field :task_date, id: "myDueDate" ,class: "form-date" %>
+        <%= form.submit "Add Task" , class: "addBtn" %>
+   <% end %>
+   <div>
+   <% @implement_list.each do |record|%>
+  
+   <p class = "date_style"><%=record.task_date%>
+   <%=record.task%>
+   <%# <%= link_to "delete", todo, method: :delete, data: { confirm: "You sure?" } %>
+  </p>
+  <a href="/delete/<%= record.id %>" class="btn-btn-danger"><button>Delete</button></a>
+   
+   <%# <p class = "task_style"></p> %>
+   <%end%>
+   </div>
+<%# <input type = "hidden" name = "authenticity_token" value = <%= form_authenticity_token %>
+<%# <input class = "style_name" type = "text" id = "text_of_task" name = "todo[task]" placeholder = "Task name" required style="margin-left:30%; margin-top:5%">
+<input class = "style_name" type = "date" id = "date_of_task" name = "todo[task_date]" required style="margin-left:5%; margin-top:5%"><br/>
+<input class = "style_name" type = "submit" id = "submit_task" name = "submit" value = "Add task" required style="margin-left:45%;margin-top:5%"> %>
+ 
+<%# </form> %>
