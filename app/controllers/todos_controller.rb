@@ -6,7 +6,8 @@ class TodosController < ApplicationController
   def create
     todo = Todo.new(todos_params)
     if todo.save
-      render plain: "Successful"
+      redirect_to root_path
+      # render plain: "Successful"
     #  todo_list
     else
      render plain: "Failed"
