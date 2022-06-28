@@ -66,10 +66,10 @@
         <%= form.submit "Add Task" , class: "addBtn" %>
    <% end %>
    <div>
-   <% @implement_list.each do |record|%>
+   <% @implement_list.each do |record| %>
   
-   <p class = "date_style"><%=record.task_date%>
-   <%=record.task%>
+   <p class = "date_style"><%= record.task_date %>
+   <%= record.task %>
    <%# <%= link_to "delete", todo, method: :delete, data: { confirm: "You sure?" } %>
   </p>
   <a href="/delete/<%= record.id %>" class="btn-btn-danger"><button>Delete</button></a>
