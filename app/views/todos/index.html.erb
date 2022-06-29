@@ -1,82 +1,87 @@
 <style>
-
-/* * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: cursive;
-  } */
-   
   body {
-    background: #f2f2f2;
-  }
-   
+    background-image: url(<%= asset_path 'background-6.jpg' %>);
+    /* background: #f2f2f2; */
+  } 
   h1{
-     text-align: center;
-     margin: 5%;
-     font-size: 3rem;
-     
-  }
-   
-   .form-control{
-    width : 35%;
+    text-align: center;
+    margin: 5%;
+    font-size: 3rem;   
+  } 
+  .form-control{
+    width : 30%;
     margin-top : 1%;
-    margin-left : 33%;
+    margin-left : 36%;
     text-align: left;
     padding-left: 10px;
     padding: 10px;
     font-size: 20px;
-    list-style: circle;
+    border-radius: 25px;
   }
   .form-date{
-    width : 20%;
+    width : 15%;
     margin-top : 2%;
-    margin-left : 40%;
+    margin-left : 43%;
     text-align: left;
     padding-left: 10px;
     padding: 10px;
     font-size: 20px;
-    list-style: circle;
+    border-radius: 25px;
+
   }
   .addBtn{
     margin-top : 3%;
-    margin-left : 48%;
-    padding-left: 10px;
+    margin-left : 49%;
     padding: 10px;
     font-size: 20px;
+    background-color: lightgray;
+    border-color: grey;
   }
-  /* .task_style{
-    margin-left : 45%;
-    font-size : 20px;
-  } */
-  .date_style{
-    margin-left : 35%;
-    font-size : 20px;
+  .addBtn:hover{
+    background-color: green;
+    border-color: green;
   }
-  .btn-btn-danger{
-    color: white;
+  .task_style{
+    margin-left: 5%;
+  }
+  .div_style {
+    margin-left: 34%;
+    margin-top: 5%;
+    font-size: 21px;
+    font-style: normal;
+    font-family: sans-serif;
+  }
+  .button_style{
+    background-color: lightgray;
+    border-color: grey;
+    font-size: 15px;
+    width: 5%;
+    margin-left: 5%;
+  }
+  .button_style:hover{
     background-color: red;
+    border-color: red;
   }
-
 </style>
-  <h1 class = "row"> Todo List </h1>
-  <%= form_with(model: @todo,  url: "/todos", method: "POST") do |form| %>
-        <%= form.text_field :task, id: "myInput" ,placeholder: "Add a Task..." ,class: "form-control" %>
-        <%= form.date_field :task_date, id: "myDueDate" ,class: "form-date" %>
-        <%= form.submit "Add Task" , class: "addBtn" %>
-   <% end %>
-   <div>
-   <% @implement_list.each do |record| %>
-  
-   <p class = "date_style"><%= record.task_date %>
-   <%= record.task %>
-   <%# <%= link_to "delete", todo, method: :delete, data: { confirm: "You sure?" } %>
-  </p>
-  <a href="/delete/<%= record.id %>" class="btn-btn-danger"><button>Delete</button></a>
-   
-   <%# <p class = "task_style"></p> %>
-   <% end %>
-   </div>
+<h1 class = "row"> 
+  Todo list
+</h1>
+<%= form_with(model: @todo,  url: "/todos", method: "POST") do |form| %>
+  <%= form.text_field :task, id: "myInput" ,placeholder: "Add a Task..." ,class: "form-control" %>
+  <%= form.date_field :task_date, id: "myDueDate" ,class: "form-date" %>
+  <%= form.submit "Add Task" , class: "addBtn" %>
+<% end %>
+<div class= "div_style">
+  <h3 style="margin-bottom:3%;">Tasks</h3>
+  <% @implement_list.each do |record| %>
+    <p>
+      <%= record.task_date %>
+      <span class = "task_style" ><%= record.task %></span>
+      <%# <%= link_to "delete", todo, method: :delete, data: { confirm: "You sure?" } %>
+      <a href="/delete/<%= record.id %>" ><button class="button_style"> Delete </button></a>
+    </p>
+  <% end %>
+</div>
 <%# <input type = "hidden" name = "authenticity_token" value = <%= form_authenticity_token %>
 <%# <input class = "style_name" type = "text" id = "text_of_task" name = "todo[task]" placeholder = "Task name" required style="margin-left:30%; margin-top:5%">
 <input class = "style_name" type = "date" id = "date_of_task" name = "todo[task_date]" required style="margin-left:5%; margin-top:5%"><br/>
